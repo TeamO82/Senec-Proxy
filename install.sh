@@ -44,6 +44,8 @@ fi
 
 SENEC_PORT="${SENEC_PORT:-443}"
 [[ "$SENEC_PORT" =~ ^[0-9]+$ ]] || fail "SENEC_PORT must be a number between 1 and 65535."
+(( ${#SENEC_PORT} <= 5 )) || fail "SENEC_PORT must be between 1 and 65535."
+SENEC_PORT=$((10#$SENEC_PORT))
 (( SENEC_PORT >= 1 && SENEC_PORT <= 65535 )) || fail "SENEC_PORT must be between 1 and 65535."
 
 TEMP_DIR="$(mktemp -d)"
@@ -55,7 +57,7 @@ fetch "${RAW_BASE}/senec-proxy.py" "$TEMP_DIR/senec-proxy.py" || fail "Could not
 fetch "${RAW_BASE}/senec-proxy.conf.example" "$TEMP_DIR/senec-proxy.conf.example" || fail "Could not download the example configuration from GitHub."
 
 if ! id "$SERVICE_USER" >/dev/null 2>&1; then
-    useradd --system --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin "$SERVICE_USER"
+    useradd --system --user-group --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin "$SERVICE_USER"
 fi
 
 install -d -o root -g "$SERVICE_USER" -m 0750 "$INSTALL_DIR"
