@@ -1,5 +1,29 @@
 # Installation
 
+Diese Anleitung beschreibt die automatische und manuelle Installation auf Debian-basierten Systemen. Das Installationsskript lädt Programm und Beispielkonfiguration aus dem offiziellen Repository, legt einen eigenen Dienstbenutzer an und richtet Dateirechte sowie den systemd-Dienst ein.
+
+## Automatische Installation
+
+Voraussetzungen: Debian/Ubuntu mit Python 3, systemd und `curl` oder `wget`. Das Skript muss mit Root-Rechten laufen. Es installiert keine Pakete.
+
+```sh
+curl -fsSLO https://raw.githubusercontent.com/TeamO82/Senec-Proxy/main/install.sh
+less install.sh
+sudo bash install.sh
+```
+
+Das Skript fragt interaktiv nach dem SENEC-Host. Alternativ kann der Host nicht-interaktiv übergeben werden:
+
+```sh
+sudo env SENEC_HOST=192.168.0.171 bash install.sh
+```
+
+Optional lässt sich der SENEC-Port mit `SENEC_PORT` setzen oder der Quell-Branch bzw. Tag mit `SENEC_PROXY_VERSION` auswählen.
+
+Das Skript überschreibt eine bereits vorhandene Konfiguration nicht. Die Standardkonfiguration bindet den Proxy an `127.0.0.1`. Für Zugriff aus dem LAN ändern Sie `listen_host` in `/usr/local/senec-proxy/senec-proxy.conf` bewusst auf `0.0.0.0` und begrenzen den Zugriff über Ihre Firewall. Der Proxy bietet keine eingebaute Anmeldung.
+
+## Manuelle Installation
+
 > Diese Anleitung führt durch die manuelle Installation auf Debian-basierten Systemen. Die Befehle nehmen Änderungen am Zielsystem vor, wenn sie dort ausgeführt werden.
 
 ## 1. Python und systemd prüfen
@@ -41,7 +65,7 @@ sudo touch /usr/local/senec-proxy/senec-proxy.log
 
 ## 5. systemd-Unit erstellen
 
-Die Unit-Datei ist im Projektordner nicht enthalten. Der folgende Vorschlag passt zum festen Programmpfad; `User=` und `Group=` bei einem dedizierten Dienstkonto ergänzen und die Schreibrechte für die Logdatei sicherstellen.
+Der Installer erstellt die systemd-Unit automatisch. Bei manueller Installation passt der folgende Vorschlag zum festen Programmpfad; `User=` und `Group=` bei einem dedizierten Dienstkonto ergänzen und die Schreibrechte für die Logdatei sicherstellen.
 
 ```sh
 sudo mcedit /etc/systemd/system/senec-proxy.service
