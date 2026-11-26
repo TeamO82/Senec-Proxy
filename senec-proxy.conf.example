@@ -1,0 +1,11 @@
+[SENEC]
+host = senec.local
+port = 443
+ssl_verify = false
+poll_interval = 10
+section_refresh_interval = 300
+timeout = 5
+
+[PROXY]
+listen_host = 127.0.0.1
+listen_port = 8765
