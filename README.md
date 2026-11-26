@@ -8,7 +8,6 @@ Lade das Installationsskript herunter, prüfe es und starte es mit Root-Rechten:
 
 ```sh
 curl -fsSLO https://raw.githubusercontent.com/TeamO82/Senec-Proxy/main/install.sh
-less install.sh
 sudo bash install.sh
 ```
 
@@ -117,7 +116,6 @@ Download the installer, review it, and run it with root privileges:
 
 ```sh
 curl -fsSLO https://raw.githubusercontent.com/TeamO82/Senec-Proxy/main/install.sh
-less install.sh
 sudo bash install.sh
 ```
 
