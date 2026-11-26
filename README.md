@@ -2,6 +2,18 @@
 
 Der Proxy fragt die SENEC-Schnittstelle `lala.cgi` regelmäßig ab und stellt die zuletzt erfolgreich geladenen Daten über eine lokale HTTP-Schnittstelle bereit. Er verwendet ausschließlich die Python-Standardbibliothek.
 
+## Schnellinstallation (Debian/Ubuntu)
+
+Lade das Installationsskript herunter, prüfe es und starte es mit Root-Rechten:
+
+```sh
+curl -fsSLO https://raw.githubusercontent.com/TeamO82/Senec-Proxy/main/install.sh
+less install.sh
+sudo bash install.sh
+```
+
+Das Skript fragt nach dem Hostnamen oder der IPv4-Adresse des SENEC. Es lädt Programm und Beispielkonfiguration aus diesem Repository, richtet den Dienstbenutzer, Dateien, Berechtigungen und den systemd-Dienst ein und aktiviert den Dienst. Eine vorhandene Konfiguration bleibt erhalten. Details stehen in der [Installationsanleitung](INSTALL.md).
+
 ## Voraussetzungen
 
 - Linux mit Python 3
@@ -98,6 +110,18 @@ Das Programm schreibt nach `/usr/local/senec-proxy/senec-proxy.log`. Der Prozess
 # SENEC lala.cgi Cache Proxy
 
 The proxy regularly queries the SENEC `lala.cgi` interface and serves the most recently retrieved data through a local HTTP interface. It uses only the Python standard library.
+
+## Quick installation (Debian/Ubuntu)
+
+Download the installer, review it, and run it with root privileges:
+
+```sh
+curl -fsSLO https://raw.githubusercontent.com/TeamO82/Senec-Proxy/main/install.sh
+less install.sh
+sudo bash install.sh
+```
+
+The installer prompts for the SENEC hostname or IPv4 address. It downloads the program and example configuration from this repository, creates the service account and files with the required permissions, installs the systemd service, and enables it. An existing configuration is preserved. See the [installation guide](INSTALL.md) for details.
 
 ## Requirements
 
